@@ -19,9 +19,11 @@ app.use(function(req, res, next) {
   next();
 });
 
+app.use(express.static(path.join(__dirname, 'public')));
+
 
 router.get('/', function(req, res) {
-	res.send('<h2>Welcome to api</h2>')	
+	res.sendFile(path.join(__dirname, 'public/index.html'))
 });
 
 router.post('/', function (req, res, next) {
