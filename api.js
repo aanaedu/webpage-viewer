@@ -25,7 +25,7 @@ router.get('/', function(req, res) {
 });
 
 router.post('/', function (req, res, next) {
-	var url = req.body.url;
+	var url = req.body.url || req.query.url;
 
 	requestify.get(url, {
 		headers: {
@@ -36,7 +36,7 @@ router.post('/', function (req, res, next) {
 	})
 		.then(function(response) {
 		    // Get the response body
-			res.send(response.getBody());
+			return res.send(response.getBody());
 			next();
 		})
 		.catch(function(err){
